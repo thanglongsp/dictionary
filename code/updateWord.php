@@ -30,10 +30,10 @@
 	</nav>
 </center>
 	<div class="col-sm-4">
-			<form action="addWord.php" method="POST">
+			<form action="updateWord.php" method="POST">
 
 			<div class="form-group">
-			  <label for="id">ID:</label>
+			  <label for="id">Nhập id từ bạn muốn sửa:</label>
 			  <input type="text" class="form-control" id="id" placeholder="01" name="id">
 			</div>
 
@@ -83,7 +83,8 @@
 							  echo "Error : Unable to open database\n";
 						   }//ket noi database
 			
-				else if(isset($_POST['submit'])){
+				if(isset($_POST['submit'])){
+
 				$id = $_POST['id'];
 				$tu = $_POST['tu'];
 				$hantu = $_POST['hantu'];
@@ -91,27 +92,60 @@
 				$viesub = $_POST['viesub'];
 				$engsub = $_POST['engsub'];
 				$note = $_POST['note'];
+
 				//-- check null
-				if($id == null) 
-					echo 'Notifies: trường ID trống, hãy nhập lại!';
-				else if($tu == null) 
-					echo 'Notifies: trường từ trống, hãy nhập lại!';
-				else if($hantu == null) 
-					echo 'Notifies: trường hán tự trống, hãy nhập lại!';
-				else if($amhan == null)
-					echo 'Notifies: trường âm hán trống, hãy nhập lại! ';
-				else if($viesub == null) 
-					echo 'Notifies:trường nghĩa chống, hãy nhập lại!';
-				else{
-						$qr = "insert into goin2 values('$id','$tu','$hantu','$amhan','$viesub','$engsub','$note')" ;
-						$result = pg_query($qr);
-						if($result){
-						echo "Successed!";
-						pg_close($db);
+
+				if($tu != null ){
+						$qr1 = "update goin2 set tu = '$tu' where id = '$id'" ;
+						$result1 = pg_query($qr1);
+						if($result1){
+						echo "từ updated !";
 						}
-						else echo "false!";
 					}
-				}
+
+				if($hantu != null) {
+						$qr2 = "update goin2 set hantu = '$hantu' where id = '$id'" ;
+						$result2 = pg_query($qr2);
+						if($result2){
+						echo "Hán tự updated !";
+						}
+					}
+
+				if($amhan != null){
+						$qr3 = "update goin2 set amhan = '$amhan' where id = '$id'" ;
+						$result3 = pg_query($qr3);
+						if($result3){
+						echo "Âm hán updated !";
+						}
+					}
+
+				if($viesub != null){
+						$qr4 = "update goin2 set viesub = '$viesub' where id = '$id'" ;
+						$result4 = pg_query($qr4);
+						if($result4){
+						echo "Viet sub updated !";
+						}
+					}
+
+				if($engsub != null){
+						$qr5 = "update goin2 set engsub = '$engsub' where id = '$id'" ;
+						$result5 = pg_query($qr5);
+						if($result5){
+						echo "EngSub updated !";
+						}
+					}
+
+				if($note != null){
+						$qr6 = "update goin2 set note = '$note' where id = '$id'" ;
+						$result6 = pg_query($qr6);
+						if($result6){
+						echo "Note updated !";
+						}
+					}
+
+				echo "Updated all !";
+				pg_close($db);
+			}
 			?>
 </center>
 	

@@ -21,10 +21,10 @@
 		  <li><a href="homePage.php">Home</a></li>
 		  
 		  <li class="active"><a href="addWord.php">Add word</a></li>
-		  <li><a href="#">Update word</a></li>
+		  <li><a href="updateWord.php">Update word</a></li>
 		  <li><a href="deleteWord.php">Delete Word</a></li>
 		  <li><a href="#">Sentence - Image</a></li>
-		  <li><a href="#">Mini - Game</a></li>
+		  <li><a href="miniGame.php">Mini - Game</a></li>
 	   
 		</ul>
 	  </div>
