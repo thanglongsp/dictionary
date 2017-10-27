@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
@@ -29,49 +30,42 @@
 	  </div>
 	</nav>
 </center>
-	<div class="col-sm-4">
-			<form action="deleteWord.php" method="POST">
-				<div class="form-group">
-				  <label for="tu">Từ bạn muốn xóa :</label>
-				  <input type="text" class="form-control" id="tu" placeholder="にほんご" name="tu">
-				</div>
-	
-				<button type="submit" name="submit" class="btn btn-success" onclick="return confirm('Bạn đã chắc chắn')">Submit</button>
-		  </form>
-	</div>
-	<!--Code php-->
+
 <center>
-		<?php
-					$host = "host=127.0.0.1";
-					$port = "port=5432";
-					$dbname = "dbname=tudien";
-					$credentials = "user=postgres password='thanglongsp'";
-					$db = pg_connect("$host $port $dbname $credentials");
-					   if(!$db)
-						   {
-							  echo "Error : Unable to open database\n";
-						   }//ket noi database
+<div class="col-sm-4">
+	<p>Nghĩa của từ </p>
+			<p id="demo"></p>
+
+			<form id="form1">
+			<input name="nameInput" type="text">
+			</form>
+			<br>
+			<button class="btn btn-success" onclick = "Myfunction()">Check!</button> <br>
+			<br>
+			<p id="result">result!</p>
+
+			<script>
+						var listWords = {じんせい:"cuộc sống", にんげん:"nhân loại",ひと:"người",そせん:"tổ tiên",しんせき:"thân thích"};
+						var arr = ["じんせい","にんげん","ひと","そせん","しんせき"];	
+					    var i = Math.floor(Math.random() * arr.length);
+						document.getElementById("demo").innerHTML = arr[i];   
+						function Myfunction(){
+					   		var x,y;
+					    	x = document.getElementById("form1");
+							y = x.elements["nameInput"].value;
+					    
+					    	document.getElementById("result").innerHTML = y;
+					    
+							if(listWords[arr[i]] == y){
+							document.getElementById("result").innerHTML = "true! ^.^";
+							}
+							else document.getElementById("result").innerHTML = "false! -_-";
+							}
+					</script>
+</div>
 			
-				else if(isset($_POST['submit'])){
-				$tu = $_POST['tu'];
-				//-- check null
-				if($tu == null) 
-					echo 'Notifies: bạn chưa nhập gì, hãy nhập lại!';
-				else{
-						$qr = "DELETE FROM goin2 WHERE tu = '$tu'" ;
-						$result = pg_query($qr);
-						if($result){
-						echo "Successed!";
-						pg_close($db);
-						}
-						else echo "false!";
-					}
-				}
-			?>
 </center>
-	
-	
-	
+
 <center>
 	<div class="col-sm-8">
   <h2>Dictionary</h2>
@@ -104,8 +98,9 @@
 						<th>EngSub</th>
 						<th>Note</th>
 					</tr>
+
 				<table border="2" id="mytable" class="table table-striped">
-				<tbody>
+				<tbody >
 					<?php 
 					
 						$b = 0 ;
@@ -138,7 +133,8 @@
 			  });
 			});
 			</script>
-			
+
 </center>
+
 </body>
 </html>

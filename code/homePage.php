@@ -23,7 +23,7 @@
 		  <li><a href="#">Update word</a></li>
 		  <li><a href="deleteWord.php">Delete Word</a></li>
 		  <li><a href="#">Sentence - Image</a></li>
-		  <li><a href="#">Mini - Game</a></li>
+		  <li><a href="miniGame.php">Mini - Game</a></li>
 	   
 		</ul>
 	  </div>
@@ -50,7 +50,7 @@
 						$query = "SELECT * from goin2" ;
 						$rowCollection = pg_query($query);
 				?>
-				<table width="800" border="2" class = "list-group">
+				<table border="2" class="table table-striped">
 					<tr>
 						<th>STT</th>
 						<th>ID</th>
@@ -61,7 +61,7 @@
 						<th>EngSub</th>
 						<th>Note</th>
 					</tr>
-				<table width="800" border="2" id="mytable" class = "list-group">
+				<table border="2" id="mytable" class="table table-striped">
 				<tbody>
 					<?php 
 					
